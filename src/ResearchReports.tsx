@@ -1,7 +1,8 @@
 import { useLoaderData } from "react-router"
 import type { ServerResponse } from "./model"
 import { Tree, type TreeDataNode } from "antd";
-import { CheckOutlined } from "@ant-design/icons";
+import { CheckOutlined, FlagOutlined } from "@ant-design/icons";
+import type { ReactNode } from "react";
 
 interface ServerGeneralizedReport {
   name: string;
@@ -16,6 +17,7 @@ interface ServerGeneralizedReport {
   selfPath: string;
   level: number;
   parentPath: string;
+  hasIndustrialReports: boolean;
 }
 
 export default function ResearchReports() {
@@ -61,11 +63,17 @@ function buildRootNode(reportList: ServerGeneralizedReport[]): TreeDataNode[] {
     title: <ReadCntTitle pdfCnt={rootReport.pdfCnt} pdfReadCnt={rootReport.pdfReadCnt} name={rootNodeKey} />,
     icon: () => {
       const rootReport = reportMap[rootNodeKey]
-      if (rootReport.pdfCnt === rootReport.pdfReadCnt) {
-        return <CheckOutlined />
+      const icons: ReactNode[] = []
+      const allPdfRead = rootReport.pdfCnt !== 0 && rootReport.pdfCnt === rootReport.pdfReadCnt
+      if (allPdfRead) {
+        icons.push(<CheckOutlined key="checkoutlined" style={{color: "#52c41a"}}/>)
       }
 
-      return null
+      if (rootReport.hasIndustrialReports && !allPdfRead) {
+        icons.push(<FlagOutlined key="flagoutlined" style={{color: "#ff4d4f"}}/>)
+      }
+
+      return <div>{icons}</div>
     },
   }
 
@@ -81,11 +89,17 @@ function buildRootNode(reportList: ServerGeneralizedReport[]): TreeDataNode[] {
           title: <ReadCntTitle pdfCnt={childReport.pdfCnt} pdfReadCnt={childReport.pdfReadCnt} name={childReport.name} />,
           children: [],
           icon: () => {
-            if (childReport.pdfCnt !== 0 && childReport.pdfCnt === childReport.pdfReadCnt) {
-              return <CheckOutlined style={{color: "#52c41a"}}/>
+            const icons: ReactNode[] = []
+            const allPdfRead = childReport.pdfCnt !== 0 && childReport.pdfCnt === childReport.pdfReadCnt
+            if (allPdfRead) {
+              icons.push(<CheckOutlined key="checkoutlined" style={{color: "#52c41a"}}/>)
             }
 
-            return null
+            if (childReport.hasIndustrialReports && !allPdfRead) {
+              icons.push(<FlagOutlined key="flagoutlined" style={{color: "#ff4d4f"}}/>)
+            }
+
+            return <div>{icons}</div>
           },
         }
         q.push({...childNode})
