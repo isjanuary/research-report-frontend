@@ -17,7 +17,7 @@ interface ServerGeneralizedReport {
   selfPath: string;
   level: number;
   parentPath: string;
-  hasIndustrialReports: boolean;
+  hasUnreadIndustry: boolean;
 }
 
 export default function ResearchReports() {
@@ -69,7 +69,7 @@ function buildRootNode(reportList: ServerGeneralizedReport[]): TreeDataNode[] {
         icons.push(<CheckOutlined key="checkoutlined" style={{color: "#52c41a"}}/>)
       }
 
-      if (rootReport.hasIndustrialReports && !allPdfRead) {
+      if (rootReport.hasUnreadIndustry && !allPdfRead) {
         icons.push(<FlagOutlined key="flagoutlined" style={{color: "#ff4d4f"}}/>)
       }
 
@@ -95,7 +95,7 @@ function buildRootNode(reportList: ServerGeneralizedReport[]): TreeDataNode[] {
               icons.push(<CheckOutlined key="checkoutlined" style={{color: "#52c41a"}}/>)
             }
 
-            if (childReport.hasIndustrialReports && !allPdfRead) {
+            if (childReport.hasUnreadIndustry) {
               icons.push(<FlagOutlined key="flagoutlined" style={{color: "#ff4d4f"}}/>)
             }
 
