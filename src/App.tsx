@@ -16,6 +16,10 @@ const items: MenuItem[] = [
     label: <NavLink to={"/research-report"} end>Reports Overview</NavLink>,
     key: 'research-report',
   },
+  {
+    label: <NavLink to={"/interview-questions"}>Interview Questions</NavLink>,
+    key: 'interview-questions',
+  },
 ]
 
 const pathnames = window.location.pathname
