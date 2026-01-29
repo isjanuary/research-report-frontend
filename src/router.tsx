@@ -3,6 +3,7 @@ import App from "./App";
 import ViteIntroduction from "./ViteIntroduction";
 import ResearchReports from "./ResearchReports";
 import { loader } from "./ResearchReports";
+import InterviewComponent from "./Interview/Interview";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
         path: 'research-report',
         Component: ResearchReports,
         loader,
+      },
+      {
+        path: 'interview-questions',
+        Component: InterviewComponent,
       },
     ],
   },
