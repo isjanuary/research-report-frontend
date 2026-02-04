@@ -1,0 +1,9 @@
+.content-card {
+  background-color: rgb(240, 242, 245);
+  width: 100%;
+  height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+}

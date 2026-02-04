@@ -20,6 +20,10 @@ const items: MenuItem[] = [
     label: <NavLink to={"/interview-questions"}>Interview Questions</NavLink>,
     key: 'interview-questions',
   },
+  {
+    label: <NavLink to={"/local-tools"}>Local Tools</NavLink>,
+    key: 'local-tools',
+  },
 ]
 
 const pathnames = window.location.pathname
@@ -36,7 +40,9 @@ export default function App() {
   return (
     <>
       <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} defaultSelectedKeys={defaultSelectedKeys} />
-      <Outlet />
+      <div className='content-container'>
+        <Outlet />
+      </div>
     </>
   )
 }
