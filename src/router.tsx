@@ -4,6 +4,7 @@ import ViteIntroduction from "./ViteIntroduction";
 import ResearchReports from "./ResearchReports";
 import { loader } from "./ResearchReports";
 import InterviewComponent from "./Interview/Interview";
+import LocalToolComponent from "./LocalTools";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: 'interview-questions',
         Component: InterviewComponent,
+      },
+      {
+        path: 'local-tools',
+        Component: LocalToolComponent,
       },
     ],
   },
